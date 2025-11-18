@@ -11,18 +11,24 @@ contract Deploy is Script {
     function run() external {
         vm.startBroadcast();
 
+        // Deploy Lido and StETH
         Lido lido = new Lido();
-        WstETH wstEth = new WstETH(address(lido.stETH()));
 
+        // Deploy WstETH, pass the address of stEth variable from Lido
+        WstETH wstEth = new WstETH(address(lido.stEth.address));
+
+        // Deploy Aave and a mock aToken
         Aave aave = new Aave();
         MockAToken aStETH = new MockAToken("Aave stETH", "astETH");
 
-        aave.registerAToken(address(lido.stETH()), address(aStETH));
+        // Register aToken with Aave and transfer ownership
+        aave.registerAToken(address(lido.stEth.address), address(aStETH));
         aStETH.transferOwnership(address(aave));
 
+        // Deploy RestakeManager with all contract addresses
         new RestakeManager(
             address(lido),
-            address(lido.stETH()),
+            address(lido.stEth.address),
             address(wstEth),
             address(aave)
         );
