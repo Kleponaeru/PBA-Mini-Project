@@ -2,18 +2,10 @@
 pragma solidity ^0.8.18;
 
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
-import {
-    IERC20
-} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
-import {
-    ERC20
-} from "../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-import {
-    Ownable
-} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import {
-    ReentrancyGuard
-} from "../lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
+import {IERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import {ERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
+import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import {ReentrancyGuard} from "../lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
 
 contract Aave is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
@@ -44,10 +36,7 @@ contract Aave is Ownable, ReentrancyGuard {
 }
 
 contract MockAToken is ERC20, Ownable {
-    constructor(
-        string memory n,
-        string memory s
-    ) ERC20(n, s) Ownable(msg.sender) {}
+    constructor(string memory n, string memory s) ERC20(n, s) Ownable(msg.sender) {}
 
     function mint(address to, uint256 amount) external onlyOwner {
         _mint(to, amount);

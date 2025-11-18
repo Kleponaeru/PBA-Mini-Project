@@ -26,12 +26,7 @@ contract Deploy is Script {
         aStETH.transferOwnership(address(aave));
 
         // Deploy RestakeManager with all contract addresses
-        new RestakeManager(
-            address(lido),
-            address(lido.stEth.address),
-            address(wstEth),
-            address(aave)
-        );
+        new RestakeManager(address(lido), address(lido.stEth.address), address(wstEth), address(aave));
 
         vm.stopBroadcast();
     }

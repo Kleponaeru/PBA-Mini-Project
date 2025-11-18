@@ -2,15 +2,9 @@
 pragma solidity ^0.8.18;
 
 import "../lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
-import {
-    IERC20
-} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
-import {
-    Ownable
-} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import {
-    ReentrancyGuard
-} from "../lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
+import {IERC20} from "../lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import {ReentrancyGuard} from "../lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
 
 interface ILido {
     function deposit() external payable returns (uint256);
@@ -32,12 +26,7 @@ contract RestakeManager is Ownable, ReentrancyGuard {
     IWstETH public immutable wstETH;
     IAave public immutable aave;
 
-    constructor(
-        address _lido,
-        address _stEth,
-        address _wstEth,
-        address _aave
-    ) Ownable(msg.sender) {
+    constructor(address _lido, address _stEth, address _wstEth, address _aave) Ownable(msg.sender) {
         lido = ILido(_lido);
         stETH = _stEth;
         wstETH = IWstETH(_wstEth);
