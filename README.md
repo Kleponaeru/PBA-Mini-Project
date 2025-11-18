@@ -1,5 +1,3 @@
----
-
 ## **Lido — `deposit()`**
 
 In the real Lido protocol, the `submit()` (or `deposit()`) function accepts ETH and mints stETH 1:1 to the user. The ETH is then delegated to validators and the stETH balance grows over time through rebasing.
